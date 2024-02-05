@@ -1,0 +1,24 @@
+Card {
+}
+.articleCard {
+  border: 2px solid black;
+  margin: 30px;
+  padding: 30px;
+  text-align: center;
+  background-color: aqua;
+  border-radius: 20px;
+}
+h1 {
+  text-align: center;
+}
+/*
+img {
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: -10px 10px 10px black;
+}
+*/
+.pTag {
+  text-align: center;
+  text-transform: capitalize;
+}
