@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
-import SingleArticle from "./SingleArticle";
+
 import { useState } from "react";
 
 export default function Article({ article }) {
@@ -36,7 +36,7 @@ export default function Article({ article }) {
                 to={`/articles/${article.article_id}`}
                 style={{ textDecoration: "none" }}
               >
-                Click me!
+                Open Article!
               </Link>
               <br />
               Author: {article.author}

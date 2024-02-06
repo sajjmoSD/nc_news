@@ -9,7 +9,6 @@ export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     fetchAllArticles().then((data) => {
-      console.log(data);
       setArticles(data.articles);
     });
   }, []);

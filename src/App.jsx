@@ -16,12 +16,7 @@ function App() {
         <Routes>
           <Route path="" element={<Homepage />} />
           <Route path="/articles" element={<ArticleList />} />
-          <Route
-            path="/articles/:id"
-            element={
-              <SingleArticle articles={articles} setArticles={setArticles} />
-            }
-          />
+          <Route path="/articles/:id" element={<SingleArticle />} />
           {/* <Route path="/users" element={<Users />} /> */}
         </Routes>
       </div>
