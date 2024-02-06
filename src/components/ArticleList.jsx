@@ -6,11 +6,11 @@ import { Grid, Pagination, Stack } from "@mui/material";
 export default function ArticleList() {
   const articlesPerPage = 6;
   const [currPage, setCurrPage] = useState(1);
-
-  const [articles, setArticle] = useState([]);
+  const [articles, setArticles] = useState([]);
   useEffect(() => {
     fetchAllArticles().then((data) => {
-      setArticle(data.articles);
+      console.log(data);
+      setArticles(data.articles);
     });
   }, []);
   const lastArticle = currPage * articlesPerPage;
@@ -25,7 +25,7 @@ export default function ArticleList() {
         <Header text="List of Articles!" />
         <Grid container spacing={2}>
           {currArticles.map((article) => {
-            return <Article key={article.article_id}>{article}</Article>;
+            return <Article key={article.article_id} article={article} />;
           })}
         </Grid>
         <Stack spacing={2} justifyContent={"center"} mt={3}>
