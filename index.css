@@ -1,5 +1,3 @@
-Card {
-}
 .articleCard {
   border: 2px solid black;
   margin: 30px;
@@ -21,4 +19,11 @@ img {
 .pTag {
   text-align: center;
   text-transform: capitalize;
+}
+.loading {
+  text-align: center;
+  font-size: 100px;
+}
+.sAc {
+  width: 100vw;
 }

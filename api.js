@@ -7,3 +7,13 @@ export const fetchAllArticles = () => {
     return res.data;
   });
 };
+export const fetchArticlebyId = (article_id) => {
+  return myApi
+    .get(`/articles/${article_id}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};

@@ -20,20 +20,3 @@ export default function Navigation() {
     </AppBar>
   );
 }
-{
-  /* <div>
-      <nav className="navBar">
-        <ul>
-          <li>
-            <Link to={``}>Home</Link>
-          </li>
-          <li>
-            <Link to={`/articles`}>Articles</Link>
-          </li>
-          <li>
-            <Link to={`/users`}>Change Users</Link>
-          </li>
-        </ul>
-      </nav>
-    </div> */
-}

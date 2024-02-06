@@ -5,28 +5,58 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
-export default function Article({ children }) {
+import { Link } from "react-router-dom";
+import SingleArticle from "./SingleArticle";
+import { useState } from "react";
+
+export default function Article({ article }) {
+  const [showDetails, setShowDetails] = useState(false);
+  const toggleDetails = () => {
+    setShowDetails(!showDetails);
+  };
+  if (!article) {
+    return null;
+  }
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ maxWidth: 345, margin: 2 }}>
-        <CardActionArea>
+        <CardActionArea onClick={toggleDetails}>
           <CardMedia
             component="img"
             height="140"
-            image={children.article_img_url}
-            alt={children.article_title}
+            image={article.article_img_url}
+            alt={article.article_title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {children.title}
+              {article.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Author: {children.author}
+              <Link
+                to={`/articles/${article.article_id}`}
+                style={{ textDecoration: "none" }}
+              >
+                Click me!
+              </Link>
               <br />
-              Topic: {children.topic}
+              Author: {article.author}
+              <br />
+              Topic: {article.topic}
+              <br />
+              Read More:
+              <br />
             </Typography>
           </CardContent>
         </CardActionArea>
+        {showDetails && (
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Comment Count: {article.comment_count};
+              <br />
+              Votes: {article.votes}
+            </Typography>
+          </CardContent>
+        )}
       </Card>
     </Grid>
   );
