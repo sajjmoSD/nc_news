@@ -8,20 +8,35 @@ import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
+import { updateArticleVotes } from "../../api";
 
 export default function Article({ article }) {
   const [votes, setVotes] = useState(0);
   useEffect(() => {
-    localStorage.setItem(
-      "article_${article.article_id}_votes",
-      votes.toString()
+    const storedVotes = localStorage.getItem(
+      `article_${article.article_id}_votes`
     );
+    if (storedVotes !== null) {
+      setVotes(parseInt(storedVotes));
+    }
   }, [article.article_id, votes]);
   const handleUpvote = () => {
-    setVotes((prevVotes) => Math.max(prevVotes + 1, 0));
+    const newVotes = votes + 1;
+    setVotes(newVotes);
+    updateArticleVotes(article.article_id, 1);
+    localStorage.setItem(
+      `article_${article.article_id}_votes`,
+      newVotes.toString()
+    );
   };
   const handleDownvote = () => {
-    setVotes((prevVotes) => Math.max(prevVotes - 1, 0));
+    const newVotes = Math.max(votes - 1, 0);
+    setVotes(newVotes);
+    updateArticleVotes(article.article_id, -1);
+    localStorage.setItem(
+      `article_${article.article_id}_votes`,
+      newVotes.toString()
+    );
   };
   if (!article) {
     return "No article found";
