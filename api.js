@@ -67,3 +67,13 @@ export const deleteComment = (commentId) => {
     return res.data;
   });
 };
+export const fetchArticlesByTopic = (sort_by) => {
+  return myApi
+    .get(`/articles?topic=${sort_by}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
