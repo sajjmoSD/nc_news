@@ -43,12 +43,18 @@ export default function ArticleList() {
     return (
       <section>
         <Header text={headerText} />
-        <select className="dropBar" value={topic} onChange={handleTopicChange}>
-          <option value="All-items">All Articles</option>
-          <option value="cooking">Cooking</option>
-          <option value="coding">Coding</option>
-          <option value="football">Football</option>
-        </select>
+        <div>
+          <select
+            className="dropBar"
+            value={topic}
+            onChange={handleTopicChange}
+          >
+            <option value="All-items">All Articles</option>
+            <option value="cooking">Cooking</option>
+            <option value="coding">Coding</option>
+            <option value="football">Football</option>
+          </select>
+        </div>
         <Grid container spacing={2}>
           {currArticles.map((article) => {
             return <Article key={article.article_id} article={article} />;
