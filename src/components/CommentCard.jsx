@@ -9,6 +9,8 @@ export default function CommentCard({ comment }) {
     setIsDeleting(true);
     try {
       await deleteComment(comment.comment_id);
+      alert("Comment deleted successfully");
+      window.location.reload();
     } catch (err) {
       console.error("Error Deleting Comment", err);
     } finally {

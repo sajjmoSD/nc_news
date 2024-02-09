@@ -1,5 +1,6 @@
 import Header from "./components/Header";
-import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
