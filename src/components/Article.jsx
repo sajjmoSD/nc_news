@@ -11,7 +11,7 @@ import { Button } from "@mui/material";
 import { updateArticleVotes } from "../../api";
 
 export default function Article({ article }) {
-  const [votes, setVotes] = useState(0);
+  const [votes, setVotes] = useState(article.votes);
   useEffect(() => {
     const storedVotes = localStorage.getItem(
       `article_${article.article_id}_votes`
