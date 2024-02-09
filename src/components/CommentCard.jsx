@@ -1,7 +1,20 @@
 import React from "react";
-import { Paper, Grid } from "@mui/material";
+import { useState } from "react";
+import { Paper, Grid, Button } from "@mui/material";
+import { deleteComment } from "../../api";
 export default function CommentCard({ comment }) {
   const key = comment.comment_id;
+  const [isDeleting, setIsDeleting] = useState(false);
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteComment(comment.comment_id);
+    } catch (err) {
+      console.error("Error Deleting Comment", err);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
   return (
     <div className="commentCard" style={{ padding: 14 }}>
       <Paper key={key} style={{ padding: "40px 20px" }}>
@@ -13,6 +26,16 @@ export default function CommentCard({ comment }) {
             <p style={{ textAlign: "left" }}>
               {new Date(comment.created_at).toLocaleDateString()}
             </p>
+            {comment.author === "grumpy19" && (
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? "Deleting..." : "Delete Comment"}
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Paper>

@@ -62,3 +62,8 @@ export const updateArticleVotes = (article_id, inc) => {
       throw err;
     });
 };
+export const deleteComment = (commentId) => {
+  return myApi.delete(`/comments/${commentId}`).then((res) => {
+    return res.data;
+  });
+};
