@@ -12,6 +12,7 @@ import {
   Card,
   CardMedia,
   TextField,
+  Alert,
 } from "@mui/material";
 import CommentCard from "./CommentCard";
 
@@ -23,6 +24,8 @@ export default function SingleArticle() {
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   useEffect(() => {
     if (!id) {
       console.error("No id provided");
@@ -43,6 +46,13 @@ export default function SingleArticle() {
     setNewComment(e.target.value);
   };
   const handleSubmitComment = async () => {
+    if (!newComment.trim()) {
+      setError("Comment cannot be empty");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+      return;
+    }
     setIsSubmitting(true);
     try {
       const comData = {
@@ -55,8 +65,16 @@ export default function SingleArticle() {
       const res = await postComment(id, comData);
       setComments([...comments, res]);
       setNewComment("");
+      setSuccessMessage("Comment posted successfully");
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
     } catch (err) {
       console.error("posting comment failed", err);
+      setError("Failed to post comment. Please try again later");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     } finally {
       setIsSubmitting(false);
     }
@@ -121,6 +139,8 @@ export default function SingleArticle() {
           rows={4}
           sx={{ mt: 2 }}
         />
+        {error && <Alert severity="error">{error}</Alert>}
+        {successMessage && <Alert severity="success">{successMessage}</Alert>}
         <Button
           onClick={handleSubmitComment}
           variant="contained"
@@ -138,7 +158,7 @@ export default function SingleArticle() {
             </Typography>
             <div className="CC" style={{ backgroundColor: "lightgrey" }}>
               {comments.map((comment) => (
-                <CommentCard key={comment.comment_id} comment={comment} />
+                <CommentCard key={comment.comment_id + 123} comment={comment} />
               ))}
             </div>
           </Card>

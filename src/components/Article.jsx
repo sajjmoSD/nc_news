@@ -30,6 +30,9 @@ export default function Article({ article }) {
     );
   };
   const handleDownvote = () => {
+    if (votes === 0) {
+      alert("Votes is already zero");
+    }
     const newVotes = Math.max(votes - 1, 0);
     setVotes(newVotes);
     updateArticleVotes(article.article_id, -1);
@@ -38,6 +41,11 @@ export default function Article({ article }) {
       newVotes.toString()
     );
   };
+  // const handleResetVotes = () => {
+  //   updateArticleVotes(article.article_id, 28);
+  //   setVotes(0);
+  //   localStorage.removeItem(`article_${article.article_id}_votes`);
+  // }; --- Only for testing / Resetting votes
   if (!article) {
     return "No article found";
   }
@@ -89,6 +97,9 @@ export default function Article({ article }) {
           >
             Down Vote
           </Button>
+          {/* <Button onClick={handleResetVotes} variant="contained" color="error">
+            Reset
+          </Button> */}
         </CardContent>
       </Card>
     </Grid>
