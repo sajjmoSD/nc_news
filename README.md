@@ -1,8 +1,15 @@
-# React + Vite
+                                            // NC-News - Full Stack Application //
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+                          Dependicies:
+                           - Axios
+                           - React, react-dom, react-router-dom
 
-Currently, two official plugins are available:
+          Description:
+          This a reddit-style news application which users can navigate through the page and view articles.
+          A feature developed was users can filter the page of articles by the topic they would like to view
+          (Coding, football, cooking)
+          Users can click on an  article to view a more detailed version of the article.
+          Users can leave commenst on articles as well as delete their comment posted. 
+          Another feature that was develoeped was users can upvote or downvote the article which would reflect within
+          the back-end api.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
